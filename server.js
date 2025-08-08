@@ -19,12 +19,19 @@ const Fruit = require("./models/fruit.js");
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method")); // new
 app.use(morgan("dev")); //new
+const path = require("path");
 
+app.use(express.static(path.join(__dirname, "public")));
 
-// GET /
 app.get("/", async (req, res) => {
     res.render("index.ejs");
 });
+
+
+// GET /
+// app.get("/", async (req, res) => {
+//     res.render("index.ejs");
+// });
 
 // GET /fruits
 app.get("/fruits", async (req, res) => {
